@@ -1,0 +1,15 @@
+C:\Users\DELL\BaoCao1\BaoCao\BaoCao.DAL\bin\Debug\netcoreapp3.1\BaoCao.DAL.deps.json
+C:\Users\DELL\BaoCao1\BaoCao\BaoCao.DAL\bin\Debug\netcoreapp3.1\BaoCao.DAL.dll
+C:\Users\DELL\BaoCao1\BaoCao\BaoCao.DAL\obj\Debug\netcoreapp3.1\BaoCao.DAL.csprojAssemblyReference.cache
+C:\Users\DELL\BaoCao1\BaoCao\BaoCao.DAL\obj\Debug\netcoreapp3.1\BaoCao.DAL.AssemblyInfoInputs.cache
+C:\Users\DELL\BaoCao1\BaoCao\BaoCao.DAL\obj\Debug\netcoreapp3.1\BaoCao.DAL.AssemblyInfo.cs
+C:\Users\DELL\BaoCao1\BaoCao\BaoCao.DAL\bin\Debug\netcoreapp3.1\BaoCao.DAL.runtimeconfig.json
+C:\Users\DELL\BaoCao1\BaoCao\BaoCao.DAL\bin\Debug\netcoreapp3.1\BaoCao.DAL.runtimeconfig.dev.json
+C:\Users\DELL\BaoCao1\BaoCao\BaoCao.DAL\bin\Debug\netcoreapp3.1\BaoCao.DAL.pdb
+C:\Users\DELL\BaoCao1\BaoCao\BaoCao.DAL\obj\Debug\netcoreapp3.1\BaoCao.DAL.csproj.CoreCompileInputs.cache
+C:\Users\DELL\BaoCao1\BaoCao\BaoCao.DAL\obj\Debug\netcoreapp3.1\BaoCao.DAL.dll
+C:\Users\DELL\BaoCao1\BaoCao\BaoCao.DAL\obj\Debug\netcoreapp3.1\BaoCao.DAL.pdb
+C:\Users\DELL\BaoCao1\BaoCao\BaoCao.DAL\obj\Debug\netcoreapp3.1\BaoCao.DAL.genruntimeconfig.cache
+C:\Users\DELL\BaoCao1\BaoCao\BaoCao.DAL\bin\Debug\netcoreapp3.1\BaoCao.Common.dll
+C:\Users\DELL\BaoCao1\BaoCao\BaoCao.DAL\bin\Debug\netcoreapp3.1\BaoCao.Common.pdb
+C:\Users\DELL\BaoCao1\BaoCao\BaoCao.DAL\obj\Debug\netcoreapp3.1\BaoCao.DAL.csproj.CopyComplete

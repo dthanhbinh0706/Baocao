@@ -1,0 +1,17 @@
+C:\Users\DELL\BaoCao1\BaoCao\BaoCao.BLL\bin\Debug\netcoreapp3.1\BaoCao.BLL.deps.json
+C:\Users\DELL\BaoCao1\BaoCao\BaoCao.BLL\bin\Debug\netcoreapp3.1\BaoCao.BLL.dll
+C:\Users\DELL\BaoCao1\BaoCao\BaoCao.BLL\obj\Debug\netcoreapp3.1\BaoCao.BLL.csprojAssemblyReference.cache
+C:\Users\DELL\BaoCao1\BaoCao\BaoCao.BLL\obj\Debug\netcoreapp3.1\BaoCao.BLL.AssemblyInfoInputs.cache
+C:\Users\DELL\BaoCao1\BaoCao\BaoCao.BLL\obj\Debug\netcoreapp3.1\BaoCao.BLL.AssemblyInfo.cs
+C:\Users\DELL\BaoCao1\BaoCao\BaoCao.BLL\bin\Debug\netcoreapp3.1\BaoCao.BLL.runtimeconfig.json
+C:\Users\DELL\BaoCao1\BaoCao\BaoCao.BLL\bin\Debug\netcoreapp3.1\BaoCao.BLL.runtimeconfig.dev.json
+C:\Users\DELL\BaoCao1\BaoCao\BaoCao.BLL\bin\Debug\netcoreapp3.1\BaoCao.BLL.pdb
+C:\Users\DELL\BaoCao1\BaoCao\BaoCao.BLL\bin\Debug\netcoreapp3.1\BaoCao.Common.dll
+C:\Users\DELL\BaoCao1\BaoCao\BaoCao.BLL\bin\Debug\netcoreapp3.1\BaoCao.DAL.dll
+C:\Users\DELL\BaoCao1\BaoCao\BaoCao.BLL\bin\Debug\netcoreapp3.1\BaoCao.Common.pdb
+C:\Users\DELL\BaoCao1\BaoCao\BaoCao.BLL\bin\Debug\netcoreapp3.1\BaoCao.DAL.pdb
+C:\Users\DELL\BaoCao1\BaoCao\BaoCao.BLL\obj\Debug\netcoreapp3.1\BaoCao.BLL.csproj.CoreCompileInputs.cache
+C:\Users\DELL\BaoCao1\BaoCao\BaoCao.BLL\obj\Debug\netcoreapp3.1\BaoCao.BLL.csproj.CopyComplete
+C:\Users\DELL\BaoCao1\BaoCao\BaoCao.BLL\obj\Debug\netcoreapp3.1\BaoCao.BLL.dll
+C:\Users\DELL\BaoCao1\BaoCao\BaoCao.BLL\obj\Debug\netcoreapp3.1\BaoCao.BLL.pdb
+C:\Users\DELL\BaoCao1\BaoCao\BaoCao.BLL\obj\Debug\netcoreapp3.1\BaoCao.BLL.genruntimeconfig.cache
