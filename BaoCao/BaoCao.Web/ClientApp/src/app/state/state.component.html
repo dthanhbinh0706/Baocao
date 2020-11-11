@@ -1,0 +1,187 @@
+
+<h1 id="tableLabel">STATES</h1>
+
+<p *ngIf="!States"><em>Loading...</em></p>
+
+<button class="btn btn-primary" (click)="openModal(true,null)">Add New State</button>
+<hr />
+<table class="table table-light" *ngIf="States.total_record > 0">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">User</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let state of States.data">
+      <td>{{ state.stateId }}</td>
+      <td>{{ state.stateName }}</td>
+      <td>
+        <button class="btn btn-info btn-sm" (click)="openModalEdit(false,state)">
+          Edit
+        </button>
+        <button class="btn btn-danger btn-sm" (click)="deleteState(state.stateId)">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item">
+      <a
+        class="page-link"
+        aria-label="Previous"
+        href="javascript:void(0);"
+        (click)="Previous()"
+      >
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>
+    <li class="page-item">
+      <a class="page-link">{{ States.page }}</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link">{{ States.page + 1 }}</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link">{{ States.page + 2 }}</a>
+    </li>
+    <li class="page-item">
+      <a
+        class="page-link"
+        aria-label="Next"
+        href="javascript:void(0);"
+        (click)="Next()"
+      >
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" *ngIf="!isEdit" id="exampleModalLabel">
+          Add New State
+        </h5>
+        <h5 class="modal-title" *ngIf="isEdit" id="exampleModalLabel">
+          Update State
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row" *ngIf="isEdit">
+          <div class="col-4">State Id</div>
+          <div class="col-8">
+            <input class="form-control" [(ngModel)]="State.stateId" />
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col-4">State Name</div>
+          <div class="col-8">
+            <input
+              class="form-control"
+              type="string"
+              [(ngModel)]="State.stateName"
+            />
+          </div>
+        </div>
+        <br />
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-success" (click)="addState()">
+          Add
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div
+  class="modal fade"
+  id="exampleModal1"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" *ngIf="!isEdit" id="exampleModalLabel">
+          Add New State
+        </h5>
+        <h5 class="modal-title" *ngIf="isEdit" id="exampleModalLabel">
+          Update State
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row" *ngIf="isEdit">
+          <div class="col-4">State Id</div>
+          <div class="col-8">
+            <input class="form-control" [(ngModel)]="State.stateId" />
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col-4">State Name</div>
+          <div class="col-8">
+            <input
+              class="form-control"
+              type="string"
+              [(ngModel)]="State.stateName"
+            />
+          </div>
+        </div>
+        <br />
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="updateState(State.stateId)"
+        >
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -7,3 +7,12 @@ C:\Users\DELL\BaoCao1\BaoCao\BaoCao.Common\obj\Debug\netcoreapp3.1\BaoCao.Common
 C:\Users\DELL\BaoCao1\BaoCao\BaoCao.Common\obj\Debug\netcoreapp3.1\BaoCao.Common.dll
 C:\Users\DELL\BaoCao1\BaoCao\BaoCao.Common\obj\Debug\netcoreapp3.1\BaoCao.Common.pdb
 C:\Users\DELL\BaoCao1\BaoCao\BaoCao.Common\obj\Debug\netcoreapp3.1\BaoCao.Common.csprojAssemblyReference.cache
+C:\Users\DELL\Baocao\BaoCao\BaoCao.Common\bin\Debug\netcoreapp3.1\BaoCao.Common.deps.json
+C:\Users\DELL\Baocao\BaoCao\BaoCao.Common\bin\Debug\netcoreapp3.1\BaoCao.Common.dll
+C:\Users\DELL\Baocao\BaoCao\BaoCao.Common\bin\Debug\netcoreapp3.1\BaoCao.Common.pdb
+C:\Users\DELL\Baocao\BaoCao\BaoCao.Common\obj\Debug\netcoreapp3.1\BaoCao.Common.csprojAssemblyReference.cache
+C:\Users\DELL\Baocao\BaoCao\BaoCao.Common\obj\Debug\netcoreapp3.1\BaoCao.Common.csproj.CoreCompileInputs.cache
+C:\Users\DELL\Baocao\BaoCao\BaoCao.Common\obj\Debug\netcoreapp3.1\BaoCao.Common.AssemblyInfoInputs.cache
+C:\Users\DELL\Baocao\BaoCao\BaoCao.Common\obj\Debug\netcoreapp3.1\BaoCao.Common.AssemblyInfo.cs
+C:\Users\DELL\Baocao\BaoCao\BaoCao.Common\obj\Debug\netcoreapp3.1\BaoCao.Common.dll
+C:\Users\DELL\Baocao\BaoCao\BaoCao.Common\obj\Debug\netcoreapp3.1\BaoCao.Common.pdb

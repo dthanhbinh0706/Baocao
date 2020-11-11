@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "OZ8MkkrOt3YwSzT5cuTUL5XXvVnvuv8Cdis8bvRKZDSL1GZbztKVtFOqebpqVW0UP79+nhN5ARff/6OyMJShjA==",
+  "dgSpecHash": "iw7P2Rn94VdkwoFp48c+PGpmJ97MDxYLnibisEi9SUO5bCgKIs/NJkLsyAfHCBfooYsWBn8GsgewmPVqSEkDxA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\DELL\\BaoCao1\\BaoCao\\BaoCao.Common\\BaoCao.Common.csproj",
+  "projectFilePath": "C:\\Users\\DELL\\BaoCao\\BaoCao\\BaoCao.Common\\BaoCao.Common.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.0\\microsoft.bcl.hashcode.1.1.0.nupkg.sha512",

@@ -642,11 +642,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\DELL\\BaoCao1\\BaoCao\\BaoCao.Common\\BaoCao.Common.csproj",
+      "projectUniqueName": "C:\\Users\\DELL\\Baocao\\BaoCao\\BaoCao.Common\\BaoCao.Common.csproj",
       "projectName": "BaoCao.Common",
-      "projectPath": "C:\\Users\\DELL\\BaoCao1\\BaoCao\\BaoCao.Common\\BaoCao.Common.csproj",
+      "projectPath": "C:\\Users\\DELL\\Baocao\\BaoCao\\BaoCao.Common\\BaoCao.Common.csproj",
       "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\DELL\\BaoCao1\\BaoCao\\BaoCao.Common\\obj\\",
+      "outputPath": "C:\\Users\\DELL\\Baocao\\BaoCao\\BaoCao.Common\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",

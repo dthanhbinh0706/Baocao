@@ -11,6 +11,9 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { AssigneeComponent } from './assignee/assignee.component';
 import { AssigneeTaskComponent } from './assigneetask/assigneetask.component';
+import { TaskComponent } from './task/task.component';
+import { StateComponent } from './state/state.component';
+import { ReportComponent } from './report/report.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,6 +23,9 @@ import { AssigneeTaskComponent } from './assigneetask/assigneetask.component';
     FetchDataComponent,
     AssigneeComponent,
     AssigneeTaskComponent,
+    TaskComponent,
+    StateComponent,
+    ReportComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -31,6 +37,9 @@ import { AssigneeTaskComponent } from './assigneetask/assigneetask.component';
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'assignee', component: AssigneeComponent },
       { path: 'assigneetask', component: AssigneeTaskComponent },
+      { path: 'task', component: TaskComponent },
+      { path: 'state', component: StateComponent },
+      { path: 'report', component: ReportComponent },
     
     ])
   ],

@@ -5745,11 +5745,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\DELL\\BaoCao1\\BaoCao\\BaoCao.DAL\\BaoCao.DAL.csproj",
+      "projectUniqueName": "C:\\Users\\DELL\\BaoCao\\BaoCao\\BaoCao.DAL\\BaoCao.DAL.csproj",
       "projectName": "BaoCao.DAL",
-      "projectPath": "C:\\Users\\DELL\\BaoCao1\\BaoCao\\BaoCao.DAL\\BaoCao.DAL.csproj",
+      "projectPath": "C:\\Users\\DELL\\BaoCao\\BaoCao\\BaoCao.DAL\\BaoCao.DAL.csproj",
       "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\DELL\\BaoCao1\\BaoCao\\BaoCao.DAL\\obj\\",
+      "outputPath": "C:\\Users\\DELL\\BaoCao\\BaoCao\\BaoCao.DAL\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -5765,8 +5765,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\DELL\\BaoCao1\\BaoCao\\BaoCao.Common\\BaoCao.Common.csproj": {
-              "projectPath": "C:\\Users\\DELL\\BaoCao1\\BaoCao\\BaoCao.Common\\BaoCao.Common.csproj"
+            "C:\\Users\\DELL\\BaoCao\\BaoCao\\BaoCao.Common\\BaoCao.Common.csproj": {
+              "projectPath": "C:\\Users\\DELL\\BaoCao\\BaoCao\\BaoCao.Common\\BaoCao.Common.csproj"
             }
           }
         }

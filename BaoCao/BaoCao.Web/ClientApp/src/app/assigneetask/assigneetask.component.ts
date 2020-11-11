@@ -20,9 +20,9 @@ export class AssigneeTaskComponent implements OnInit {
 
   AssigneeTask:any = {
     assigneeTaskId: Number,
-    assigneeId: Number,
-    stateId:Number,
-    taskId: Number,
+    assigneeId: String,
+    stateId: String,
+    taskId: String,
     schedule: Date
     
   }
@@ -131,9 +131,9 @@ Previous()
       this.isEdit = false;
       this.AssigneeTask = {
         assigneeTaskId: "",
-        assigneeId: "",
-        stateId:"",
-        taskId: "",
+        assigneeName: "",
+        stateName:"",
+        taskName: "",
         schedule: "",
       };
     } else {
