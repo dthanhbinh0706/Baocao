@@ -5,7 +5,7 @@
 
 <button class="btn btn-primary" (click)="openModal(true,null)">Add New AssigneeTask</button>
 <hr />
-<table class="table table-light" *ngIf="AssigneeTasks.total_record > 0">
+<table class="table table-light">
   <thead>
     <tr>
       <th scope="col">ID</th>
@@ -18,15 +18,15 @@
   <tbody>
     <tr *ngFor="let assigneeTask of AssigneeTasks.data">
       <td>{{ assigneeTask.assigneeTaskId }}</td>
-      <td>{{ assigneeTask.assigneeId }}</td>
-      <td>{{ assigneeTask.stateId }}</td>
-      <td>{{ assigneeTask.taskId }}</td>
+      <td>{{ assigneeTask.assigneeName }}</td>
+      <td>{{ assigneeTask.stateName }}</td>
+      <td>{{ assigneeTask.taskName }}</td>
       <td>{{ assigneeTask.schedule }}</td>
       <td>
         <button class="btn btn-info btn-sm" (click)="openModalEdit(false,assigneeTask)">
           Edit
         </button>
-        <button class="btn btn-danger btn-sm" (click)="deleteAssignee(assigneeTask.assigneeTaskId)">
+        <button class="btn btn-danger btn-sm" (click)="deleteAssigneeTask(assigneeTask.assigneeTaskId)">
           Delete
         </button>
       </td>
@@ -97,9 +97,20 @@
       </div>
       <div class="modal-body">
         <div class="row" *ngIf="isEdit">
+          <div class="col-4">AssigneeTask Id</div>
+          <div class="col-8">
+            <input class="form-control" [(ngModel)]="AssigneeTask.assigneeTaskId" />
+          </div>
+        </div>
+        <br />
+        <div class="row">
           <div class="col-4">Assignee Id</div>
           <div class="col-8">
-            <input class="form-control" [(ngModel)]="AssigneeTask.assigneeId" />
+            <input
+              class="form-control"
+              type="string"
+              [(ngModel)]="AssigneeTask.assigneeId"
+            />
           </div>
         </div>
         <br />
@@ -183,6 +194,17 @@
           <div class="col-4">AssigneeTask Id</div>
           <div class="col-8">
             <input class="form-control" [(ngModel)]="AssigneeTask.assigneeTaskId" />
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col-4">Assignee Id</div>
+          <div class="col-8">
+            <input
+              class="form-control"
+              type="string"
+              [(ngModel)]="AssigneeTask.assigneeId"
+            />
           </div>
         </div>
         <br />

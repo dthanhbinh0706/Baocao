@@ -20,9 +20,9 @@ export class AssigneeTaskComponent implements OnInit {
 
   AssigneeTask:any = {
     assigneeTaskId: Number,
-    assigneeId: String,
-    stateId: String,
-    taskId: String,
+    assigneeId: Number,
+    stateId: Number,
+    taskId: Number,
     schedule: Date
     
   }
@@ -131,9 +131,9 @@ Previous()
       this.isEdit = false;
       this.AssigneeTask = {
         assigneeTaskId: "",
-        assigneeName: "",
-        stateName:"",
-        taskName: "",
+        assigneeId: "",
+        stateId:"",
+        taskId: "",
         schedule: "",
       };
     } else {
@@ -150,6 +150,7 @@ Previous()
       assigneeId: Number(this.AssigneeTask.assigneeId),
       stateId: Number(this.AssigneeTask.stateId),
       taskId: Number(this.AssigneeTask.taskId),
+      schedule: String(this.AssigneeTask.schedule)
     };
     console.log(x);
     this.http.post("https://localhost:44380/api/AssigneeTasks", x).subscribe(
@@ -172,6 +173,7 @@ Previous()
       assigneeId: Number(this.AssigneeTask.assigneeId),
       stateId: Number(this.AssigneeTask.stateId),
       taskId: Number(this.AssigneeTask.taskId),
+      schedule: String(this.AssigneeTask.schedule)
     };
     this.http.put("https://localhost:44380/api/AssigneeTasks/" + Id, x).subscribe(
       (result) => {
@@ -185,7 +187,6 @@ Previous()
       (error) => {
         console.error(error);
         alert("Bạn cập nhật thất bại !");
-
       }
     );
   }

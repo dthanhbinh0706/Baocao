@@ -88,11 +88,6 @@ namespace BaoCao.BLL
         //===========================================================
         //===========================================================
 
-    
-        //===========================================================
-        //===========================================================
-
-
         #region -- Create AssigneeTask --
 
         public SingleRsp CreateAssigneeTask(AssigneeTasksReq pro)
@@ -149,11 +144,40 @@ namespace BaoCao.BLL
             return _rep.searchAssigneeTaskWithPagination(key, page, size);
         }
         #endregion
+        //===========================================================
+        //===========================================================
 
-        #region ----
-        public object GetAllAssigneeTaskWithPagination( int page, int size)
+
+        #region -- GetAllAssigneeTaskWithPagination --
+        public object GetAllAssigneeTaskWithPagination(int page, int size)
         {
-            return _rep.GetAllAssigneeTaskWithPagination(page, size);
+            var products = from at in _rep.Context.AssigneeTasks
+                           join a in _rep.Context.Assignees on at.AssigneeId equals a.AssigneeId
+                           join s in _rep.Context.States on at.StateId equals s.StateId
+                           join t in _rep.Context.Tasks on at.TaskId equals t.TaskId
+                           select new
+                           {
+                               assigneeTaskId = at.AssigneeTaskId,
+                               assigneeName = a.AssigneeName,
+                                 stateName = s.StateName,
+                                taskName = t.TaskName,
+                                schedule = at.Schedule
+                           };
+
+            // pagination
+            var offset = (page - 1) * size;
+            var total = products.Count();
+            int totalpage = (total % size) == 0 ? (total / size) : (int)((total / size) + 1);
+            var data = products.OrderBy(x => x.assigneeTaskId).Skip(offset).Take(size).ToList();
+            var res = new
+            {
+                data = data,
+                total_record = total,
+                total_page = totalpage,
+                page = page,
+                size = size
+            };
+            return res;
         }
         #endregion
 

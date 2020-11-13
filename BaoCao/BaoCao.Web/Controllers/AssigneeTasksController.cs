@@ -34,8 +34,6 @@ namespace BaoCao.Web.Controllers
             return Ok(res);
         }
 
-      
-
         // Post Method: api/Products
         [HttpPost]
         public IActionResult CreateAssigneeTask([FromBody]AssigneeTasksReq req)
@@ -75,7 +73,7 @@ namespace BaoCao.Web.Controllers
         }
 
         [HttpGet("GetAll")]
-        public IActionResult GetAllAssigneeTaskWithPagination( int page, int size)
+        public IActionResult GetAllAssigneeTaskWithPagination(int page, int size)
         {
             var res = new SingleRsp();
             res.Data = _svc.GetAllAssigneeTaskWithPagination(page, size);
