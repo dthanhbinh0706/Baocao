@@ -1,1 +1,56 @@
-<p>Work!</p>
+
+<h1 id="tableLabel">REPORTS</h1>
+
+<p *ngIf="!Reports"><em>Loading...</em></p>
+
+<hr />
+<table class="table table-light">
+  <thead>
+    <tr>
+      <th scope="col">State ID</th>
+      <th scope="col">Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let report of Reports.data">
+      <td>{{ report.stateId }}</td>
+      <td>{{ report.total }}</td>
+    </tr>
+  </tbody>
+</table>
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item">
+      <a
+        class="page-link"
+        aria-label="Previous"
+        href="javascript:void(0);"
+        (click)="Previous()"
+      >
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>
+    <li class="page-item">
+      <a class="page-link">{{ Reports.page }}</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link">{{ Reports.page + 1 }}</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link">{{ Reports.page + 2 }}</a>
+    </li>
+    <li class="page-item">
+      <a
+        class="page-link"
+        aria-label="Next"
+        href="javascript:void(0);"
+        (click)="Next()"
+      >
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+

@@ -108,7 +108,7 @@ Previous()
   }
 }
 
-//Modal
+  //Modal
   openModal(isNew, index) {
     if (isNew) {
       this.isEdit = false;
