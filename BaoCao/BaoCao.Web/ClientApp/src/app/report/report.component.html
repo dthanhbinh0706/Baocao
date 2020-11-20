@@ -1,8 +1,7 @@
-
 <h1 id="tableLabel">REPORTS</h1>
 
 <p *ngIf="!Reports"><em>Loading...</em></p>
-
+<div echarts [options]="chartOption" class="demo-chart"></div>
 <hr />
 <table class="table table-light">
   <thead>
@@ -54,3 +53,6 @@
   </ul>
 </nav>
 
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.1.0/echarts-en.common.min.js"></script>

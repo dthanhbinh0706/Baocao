@@ -44,6 +44,15 @@ namespace BaoCao.Web.Controllers
 
             return Ok(res);
         }
+        [HttpGet("GetA")]
+        public IActionResult GetA()
+        {
+            var res = new SingleRsp();
+            var products = _svc.GetA();
+            res.Data = products;
+            return Ok(res);
+        }
+
 
         private readonly ReportsSvc _svc;
     }

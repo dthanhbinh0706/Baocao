@@ -15,7 +15,7 @@
     "@angular/animations": "8.2.12",
     "@angular/common": "8.2.12",
     "@angular/compiler": "8.2.12",
-    "@angular/core": "8.2.12",
+    "@angular/core": "^8.2.12",
     "@angular/forms": "8.2.12",
     "@angular/platform-browser": "8.2.12",
     "@angular/platform-browser-dynamic": "8.2.12",
@@ -29,7 +29,9 @@
     "bootstrap": "^4.3.1",
     "chart.js": "^2.9.4",
     "core-js": "^3.3.3",
+    "echarts": "^4.9.0",
     "jquery": "3.4.1",
+    "ngx-echarts": "^5.2.1",
     "oidc-client": "^1.9.1",
     "popper.js": "^1.16.0",
     "rxjs": "^6.5.3",
@@ -51,6 +53,7 @@
     "karma-coverage-istanbul-reporter": "~2.1.0",
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.2",
+    "resize-observer-polyfill": "^1.5.1",
     "typescript": "3.5.3"
   },
   "optionalDependencies": {

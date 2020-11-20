@@ -14,6 +14,7 @@ import { AssigneeTaskComponent } from './assigneetask/assigneetask.component';
 import { TaskComponent } from './task/task.component';
 import { StateComponent } from './state/state.component';
 import { ReportComponent } from './report/report.component';
+import { NgxEchartsModule } from 'ngx-echarts';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +32,9 @@ import { ReportComponent } from './report/report.component';
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts')
+    }),
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },

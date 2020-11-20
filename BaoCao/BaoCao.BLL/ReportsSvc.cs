@@ -91,6 +91,24 @@ namespace BaoCao.BLL
         #endregion
         //===========================================================
         //===========================================================
+        #region -- GetA -- 
+        public object GetA()
+        {
+
+            var product = from p in _rep.Context.Reports
+                          join s in _rep.Context.States on p.StateId equals s.StateId
+                          select new
+                          {
+                              name = s.StateName,
+                              value = p.Total,
+
+                          };
+            return product;
+
+
+        }
+        # endregion
+
 
     }
 }
