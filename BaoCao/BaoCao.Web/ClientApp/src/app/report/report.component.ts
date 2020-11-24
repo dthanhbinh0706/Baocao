@@ -30,30 +30,9 @@ export class ReportComponent implements OnInit {
   }
 
   ReportStr:any = [{name: String , value: Number}]
-    
-  /*
-  a = [
-    {
-      a:1,
-      b:2,
-    }
-  ];
-  b = a.map(x => {
-    return {
-      c: x.a,
-      d: x.b,
-    };
-  });
-
-  b = [];
-  for (let i=0; i<a.length; i++) {
-    b.push({
-      name: a[i].stateId,
-      d: a[i].b,
-    });
-  }
-  
-  */
+  Day: any =[];
+ 
+  Dta: any = [];
 
   chartOption: EChartOption = {
     tooltip: {
@@ -61,8 +40,7 @@ export class ReportComponent implements OnInit {
       formatter: '{a} <br/>{b} : {c} ({d}%)'
   },
     series: [{
-      data: [
-        this.GetA()
+      data: [this.GetA()
     ],
       name: 'Status',
       type: 'pie',
@@ -76,8 +54,71 @@ export class ReportComponent implements OnInit {
       areaStyle: {}
     }]
   }
-  
-  
+
+option: EChartOption = {
+    color: ['#E98F6F', '#2F4554', '#61A0A8', '#C23531'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['ToDo', 'Processing', 'TimeOut', 'Completed']
+    },
+    toolbox: {
+        show: true,
+        orient: 'vertical',
+        left: 'right',
+        top: 'center',
+        feature: {
+            mark: {show: true},
+            dataView: {show: true, readOnly: false},
+            magicType: {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+            restore: {show: true},
+            saveAsImage: {show: true}
+        }
+    },
+    xAxis: [
+        {
+            type: 'category',
+            axisTick: {show: false},
+            data: [this.GetDay()]
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'ToDo',
+            type: 'bar',
+            barGap: 0,
+            data: [this.getAssigneeByState(1)]
+        },
+        {
+            name: 'Processing',
+            type: 'bar',
+            barGap: 0,
+            data: [this.getAssigneeByState(2)]
+        },
+        {
+            name: 'TimeOut',
+            type: 'bar',
+            barGap: 0,
+            data: [this.getAssigneeByState(3)]
+        },
+        {
+            name: 'Completed',
+            type: 'bar',
+            barGap: 0,
+            data:  [this.getAssigneeByState(4)]
+        }
+    ]
+};
+
 
   isEdit: boolean = true;
   refeshdata: any;
@@ -107,8 +148,20 @@ export class ReportComponent implements OnInit {
   }
   
   
-  
+  getAssigneeByState(id) {
+    this.http
+      .get("https://localhost:44380/api/Reports/getAssigneeByState/" + id)
+      .subscribe(
+        (result) => {
+        this.Dta = result;
+        this.Dta = this.Dta.data;
+        this.option.series[id-1].data=this.Dta;
+        console.log(this.option.series[id-1].data);
+        }
+      );
+  }
 
+  
   GetA() {
     this.http.get("https://localhost:44380/api/Reports/GetA").subscribe(
       (result) => {
@@ -121,6 +174,17 @@ export class ReportComponent implements OnInit {
     );
   }
   
+  GetDay() {
+    this.http.get("https://localhost:44380/api/Reports/GetDistinctiveDate").subscribe(
+      (result) => {
+        this.Day = result;
+        this.Day = this.Day.data;
+        this.option.xAxis[0].data=this.Day;
+        console.log(this.option.xAxis[0].data);
+      }
+      
+    );
+  }
 
   GetAllReportWithPagination(cPage) {
     
@@ -174,6 +238,6 @@ Previous()
     alert("Bạn đang ở trang đầu!");
   }
 }
-
+ 
   
 }

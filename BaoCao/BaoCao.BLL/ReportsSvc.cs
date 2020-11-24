@@ -107,8 +107,25 @@ namespace BaoCao.BLL
 
 
         }
-        # endregion
-
-
+        #endregion
+        //===========================================================
+        //===========================================================
+        #region -- GetDistinctiveDate --
+        public object GetDistinctiveDate()
+        {
+            return _rep.GetDistinctiveDate();
+        }
+        #endregion
+        //===========================================================
+        //===========================================================
+        #region -- get Order With UserId --
+        public object getAssigneeByState(int userid)
+        {
+            return _rep.getAssigneeByState(userid);
+        }
+        #endregion
+        //===========================================================
+        //===========================================================
+        
     }
 }

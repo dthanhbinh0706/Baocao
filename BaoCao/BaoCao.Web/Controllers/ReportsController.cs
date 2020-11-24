@@ -53,6 +53,22 @@ namespace BaoCao.Web.Controllers
             return Ok(res);
         }
 
+        [HttpGet("getAssigneeByState/{Id}")]
+        public IActionResult getAssigneeByState(int Id)
+        {
+            var res = new SingleRsp();
+            res.Data = _svc.getAssigneeByState(Id);
+            return Ok(res);
+        }
+
+        [HttpGet("GetDistinctiveDate")]
+        public IActionResult GetDistinctiveDate()
+        {
+            var res = new SingleRsp();
+            res.Data = _svc.GetDistinctiveDate();
+            return Ok(res);
+        }
+
 
         private readonly ReportsSvc _svc;
     }

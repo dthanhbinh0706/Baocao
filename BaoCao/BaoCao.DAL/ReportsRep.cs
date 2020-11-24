@@ -42,5 +42,79 @@ namespace BaoCao.DAL
         /// </summary>
 
         #endregion
+
+        #region -- getAssigneeByState--
+        public object getAssigneeByState(int userid)
+        {
+            List<object> res = new List<object>();
+            var cmn = (SqlConnection)Context.Database.GetDbConnection();
+            if (cmn.State == ConnectionState.Closed)
+                cmn.Open();
+            try
+            {
+                SqlDataAdapter da = new SqlDataAdapter();
+                DataSet ds = new DataSet();
+                var cmt = cmn.CreateCommand();
+                cmt.CommandText = "GetTotalFor";
+                cmt.CommandType = CommandType.StoredProcedure;
+                cmt.Parameters.AddWithValue("@userid", userid);
+                da.SelectCommand = cmt;
+                da.Fill(ds);
+                //kiem tra
+                if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                {
+                    foreach (DataRow row in ds.Tables[0].Rows)
+                    {
+                       
+                        res.Add(row["Total"]);
+                    }
+
+                }
+
+            }
+            catch (Exception e)
+            {
+                res = null;
+            }
+            return res;
+        }
+        #endregion
+
+        #region -- GetDistinctiveDate--
+        public object GetDistinctiveDate()
+        {
+            List<object> res = new List<object>();
+            var cmn = (SqlConnection)Context.Database.GetDbConnection();
+            if (cmn.State == ConnectionState.Closed)
+                cmn.Open();
+            try
+            {
+                SqlDataAdapter da = new SqlDataAdapter();
+                DataSet ds = new DataSet();
+                var cmt = cmn.CreateCommand();
+                cmt.CommandText = "GetDistinctiveDate";
+                cmt.CommandType = CommandType.StoredProcedure;
+                da.SelectCommand = cmt;
+                da.Fill(ds);
+                //kiem tra
+                if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                {
+                    foreach (DataRow row in ds.Tables[0].Rows)
+                    {
+
+                        res.Add(row["schedule"]);
+                    }
+
+                }
+
+            }
+            catch (Exception e)
+            {
+                res = null;
+            }
+            return res;
+        }
+        #endregion
+
     }
 }
