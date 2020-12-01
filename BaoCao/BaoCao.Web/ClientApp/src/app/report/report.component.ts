@@ -56,7 +56,7 @@ export class ReportComponent implements OnInit {
   }
 
 option: EChartOption = {
-    color: ['#E98F6F', '#2F4554', '#61A0A8', '#C23531'],
+    color: ['#C23531','#2F4554', '#61A0A8', '#E98F6F'],
     tooltip: {
         trigger: 'axis',
         axisPointer: {

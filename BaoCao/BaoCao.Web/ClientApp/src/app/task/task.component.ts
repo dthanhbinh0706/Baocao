@@ -1,8 +1,11 @@
 import { Component, OnInit, Inject } from "@angular/core";
-import { HttpClient, HttpParams } from "@angular/common/http";
+import { HttpClient, HttpParams} from "@angular/common/http";
 import { Router , NavigationEnd} from "@angular/router";
+import { Message } from "@angular/compiler/src/i18n/i18n_ast";
+import { Observable, throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
+import { error } from "protractor";
 declare var $: any;
-
 
 @Component({
   selector: 'app-task',
@@ -23,6 +26,10 @@ export class TaskComponent implements OnInit {
     taskName: String,
     
   }
+
+  
+
+
   isEdit: boolean = true;
   refeshdata: any;
 
@@ -39,6 +46,9 @@ export class TaskComponent implements OnInit {
       }
     });
   }
+
+
+  
   ngOnDestroy() {
     if (this.refeshdata) {
       this.refeshdata.unsubscribe();
@@ -49,7 +59,9 @@ export class TaskComponent implements OnInit {
     this.GetAllTaskWithPagination(1);
     // this.getuseradminbyid(id);
   }
+ 
   
+
   GetAllTaskWithPagination(cPage) {
     
     //Tạo mới 2 parameter, page và size.
@@ -138,7 +150,8 @@ Previous()
   addTask()
   {
     var x = {
-      taskName: String(this.Task.taskName) ,
+      taskId: Number(this.Task.taskId),
+      taskName: String(this.Task.taskName) 
     };
     console.log(x);
     this.http.post("https://localhost:44380/api/Tasks", x).subscribe(
@@ -148,12 +161,13 @@ Previous()
         {
           this.Task = res.data;
           window.location.reload();
+          alert("Bạn đã thêm thành công !");
         }
       },error => console.error(error)
-    );
+    )
   }
 
- 
+  
 
   updateTask(Id) {
     //console.log(id);
@@ -190,4 +204,10 @@ Previous()
   }
 
 
+ 
+  
+
+
 }
+
+

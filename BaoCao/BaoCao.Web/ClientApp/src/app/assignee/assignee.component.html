@@ -90,10 +90,26 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class="row" *ngIf="isEdit">
+        <div class="row">
           <div class="col-4">Assignee Id</div>
           <div class="col-8">
-            <input class="form-control" [(ngModel)]="Assignee.assigneeId" />
+            <input
+              pattern="^[0-9]{2}$"
+              class="form-control"
+              type="number"
+              [(ngModel)]="Assignee.assigneeId"
+              required name="assiid"
+              #assiid="ngModel"
+              ngModel
+            />
+            <div *ngIf="assiid.errors && (assiid.dirty || assiid.touched)" class="alert alert-danger">
+              <div [hidden]="!assiid.errors.required">
+                Id is required
+              </div>
+              <div [hidden]="!assiid.errors.pattern">
+                Not correct format. Id must be only 3 digits (12 or 012)
+              </div>
+            </div>
           </div>
         </div>
         <br />
@@ -104,7 +120,19 @@
               class="form-control"
               type="string"
               [(ngModel)]="Assignee.assigneeName"
+              required name="assiname"
+              #assiname="ngModel"
+              minlength="10"
+              ngModel
             />
+            <div *ngIf="assiname.errors && (assiname.dirty || assiname.touched)" class="alert alert-danger">
+              <div [hidden]="!assiname.errors.required">
+                Name is required
+              </div>
+              <div [hidden]="!assiname.errors.minlength">
+                Name must be at least 10 characters
+              </div>
+            </div>
           </div>
         </div>
         <br />
@@ -114,13 +142,14 @@
         <button type="button" class="btn btn-secondary" data-dismiss="modal">
           Close
         </button>
-        <button type="button" class="btn btn-success" (click)="addAssignee()">
+        <button [disabled]="!assiname.valid || !assiid.valid" type="button" class="btn btn-success" (click)="addAssignee()">
           Add
         </button>
       </div>
     </div>
   </div>
 </div>
+
 
 
 <div
@@ -153,7 +182,7 @@
         <div class="row" *ngIf="isEdit">
           <div class="col-4">Assignee Id</div>
           <div class="col-8">
-            <input class="form-control" [(ngModel)]="Assignee.assigneeId" />
+            <input disabled class="form-control" [(ngModel)]="Assignee.assigneeId" />
           </div>
         </div>
         <br />
@@ -164,7 +193,19 @@
               class="form-control"
               type="string"
               [(ngModel)]="Assignee.assigneeName"
+              required name="uassiname"
+              #uassiname="ngModel"
+              minlength="10"
+              ngModel
             />
+            <div *ngIf="uassiname.errors && (uassiname.dirty || uassiname.touched)" class="alert alert-danger">
+              <div [hidden]="!uassiname.errors.required">
+                Name is required
+              </div>
+              <div [hidden]="!uassiname.errors.minlength">
+                Name must be at least 10 characters
+              </div>
+            </div>
           </div>
         </div>
         <br />
@@ -178,6 +219,7 @@
           type="button"
           class="btn btn-primary"
           (click)="updateAssignee(Assignee.assigneeId)"
+          [disabled]="!uassiname.valid"
         >
           Save
         </button>

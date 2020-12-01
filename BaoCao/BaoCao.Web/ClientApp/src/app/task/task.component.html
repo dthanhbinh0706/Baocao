@@ -1,4 +1,5 @@
 
+
 <h1 id="tableLabel">TASKS</h1>
 
 <p *ngIf="!Tasks"><em>Loading...</em></p>
@@ -9,7 +10,7 @@
   <thead>
     <tr>
       <th scope="col">ID</th>
-      <th scope="col">User</th>
+      <th scope="col">Task Name</th>
     </tr>
   </thead>
   <tbody>
@@ -27,6 +28,7 @@
     </tr>
   </tbody>
 </table>
+
 <nav aria-label="Page navigation example">
   <ul class="pagination">
     <li class="page-item">
@@ -90,21 +92,54 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class="row" *ngIf="isEdit">
+        <div class="row">
           <div class="col-4">Task Id</div>
           <div class="col-8">
-            <input class="form-control" [(ngModel)]="Task.taskId" />
+            <input
+              pattern="^[1-9][0-9]{2}$"
+              class="form-control"
+              type="number"
+              [(ngModel)]="Task.taskId"
+              required name="takid"
+              #takid="ngModel"
+              ngModel
+            />
+            <div *ngIf="takid.errors && (takid.dirty || takid.touched)" class="alert alert-danger">
+              <div [hidden]="!takid.errors.required">
+                Id is required
+              </div>
+              <div [hidden]="!takid.errors.pattern">
+                Not correct format. Id must be only 3 digits (123 or 0123)
+              </div>
+            </div>
           </div>
         </div>
         <br />
+
         <div class="row">
           <div class="col-4">Task Name</div>
           <div class="col-8">
             <input
+              pattern="^[S][A-Z,-][A-Z][0-9][0-9]"
               class="form-control"
               type="string"
               [(ngModel)]="Task.taskName"
+              required name="takname"
+              #takname="ngModel"
+              minlength="1"
+              ngModel
             />
+            <div *ngIf="takname.errors && (takname.dirty || takname.touched)" class="alert alert-danger">
+              <div [hidden]="!takname.errors.required">
+                Name is required
+              </div>
+              <div [hidden]="!takname.errors.minlength">
+                Name must be contain 5 letters
+              </div>
+              <div [hidden]="!takname.errors.pattern">
+                Not correct format (S-N01)
+              </div>
+            </div>
           </div>
         </div>
         <br />
@@ -114,7 +149,7 @@
         <button type="button" class="btn btn-secondary" data-dismiss="modal">
           Close
         </button>
-        <button type="button" class="btn btn-success" (click)="addTask()">
+        <button [disabled]="!takid.valid || !takname.valid" type="button" class="btn btn-success" (click)="addTask()">
           Add
         </button>
       </div>
@@ -153,18 +188,38 @@
         <div class="row" *ngIf="isEdit">
           <div class="col-4">Task Id</div>
           <div class="col-8">
-            <input class="form-control" [(ngModel)]="Task.taskId" />
+            <input disabled class="form-control" [(ngModel)]="Task.taskId" />
           </div>
         </div>
         <br />
         <div class="row">
           <div class="col-4">Task Name</div>
           <div class="col-8">
+            
             <input
+            pattern="^[S][A-Z,-][A-Z][0-9][0-9]"
+            asp-for="Task.taskName"
               class="form-control"
               type="string"
               [(ngModel)]="Task.taskName"
+              required
+              name="utakname"
+              minlength="1"
+              #utakname="ngModel"
             />
+            <div *ngIf="utakname.errors && (utakname.dirty || utakname.touched)" class="alert alert-danger">
+              <div [hidden]="!utakname.errors.required">
+                Name is required
+              </div>
+              <div [hidden]="!utakname.errors.minlength">
+                Name must be contain 5 letters
+              </div>
+              <div [hidden]="!utakname.errors.pattern">
+                Not correct format (S-N01)
+              </div>
+            </div>
+           
+            
           </div>
         </div>
         <br />
@@ -178,6 +233,7 @@
           type="button"
           class="btn btn-primary"
           (click)="updateTask(Task.taskId)"
+          [disabled]="!utakname.valid"
         >
           Save
         </button>
@@ -185,3 +241,6 @@
     </div>
   </div>
 </div>
+
+
+

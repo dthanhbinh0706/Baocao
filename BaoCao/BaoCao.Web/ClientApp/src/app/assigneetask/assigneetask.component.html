@@ -96,65 +96,75 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class="row" *ngIf="isEdit">
+        <div class="row">
           <div class="col-4">AssigneeTask Id</div>
           <div class="col-8">
-            <input class="form-control" [(ngModel)]="AssigneeTask.assigneeTaskId" />
-          </div>
-        </div>
-        <br />
-        <div class="row">
-          <div class="col-4">Assignee Id</div>
-          <div class="col-8">
             <input
+            
               class="form-control"
-              type="string"
-              [(ngModel)]="AssigneeTask.assigneeId"
+              type="number"
+              [(ngModel)]="AssigneeTask.assigneeTaskId"
+              required name="atid"
+              #atid="ngModel"
+              ngModel
             />
+            <div *ngIf="atid.errors && (atid.dirty || atid.touched)" class="alert alert-danger">
+              <div [hidden]="!atid.errors.required">
+                Id is required
+              </div>
+            </div>
           </div>
         </div>
         <br />
-        <div class="row">
-          <div class="col-4">State Id</div>
-          <div class="col-8">
-            <input
-              class="form-control"
-              type="string"
-              [(ngModel)]="AssigneeTask.stateId"
-            />
-          </div>
+        <div class="form-group">
+          <label for="SelectCountry" >Assignee Id</label>
+            <select class="form-control" [(ngModel)]="selectedOptionAI" (ngModelChange)="onValueChangedAI($event)" required  name="assign" #assign="ngModel">
+              <option [ngValue]="undefined" disabled>Select An Option</option>
+              <option *ngFor="let assignee of Assignees.data" [ngValue]="assignee.assigneeId">{{assignee.assigneeName}}</option>
+            </select>
         </div>
         <br />
-        <div class="row">
-          <div class="col-4">Task Id</div>
-          <div class="col-8">
-            <input
-              class="form-control"
-              type="string"
-              [(ngModel)]="AssigneeTask.taskId"
-            />
-          </div>
+       <div class="form-group">
+          <label for="SelectCountry" >State Id</label>
+            <select class="form-control" [(ngModel)]="selectedOptionSI" (ngModelChange)="onValueChangedSI($event)" required  name="ai" #ai="ngModel">
+              <option [ngValue]="undefined" disabled>Select An Option</option>
+              <option *ngFor="let state of States.data" [ngValue]="state.stateId">{{state.stateName}}</option>
+            </select>
         </div>
         <br />
-        <div class="row">
+        <div class="form-group">
+          <label for="SelectCountry" >Task Id</label>
+            <select class="form-control" [(ngModel)]="selectedOptionTI" (ngModelChange)="onValueChangedTI($event)" required  name="ti" #ti="ngModel">
+              <option [ngValue]="undefined" disabled>Select An Option</option>
+              <option *ngFor="let task of Tasks.data" [ngValue]="task.taskId">{{task.taskName}}</option>
+            </select>
+        </div>
+        <br />
+       <div class="row">
           <div class="col-4">Schedule</div>
           <div class="col-8">
             <input
               class="form-control"
               type="string"
               [(ngModel)]="AssigneeTask.schedule"
+              required name="sch"
+              #sch="ngModel"
+              ngModel
             />
+            <div *ngIf="sch.errors && (sch.dirty || sch.touched)" class="alert alert-danger">
+              <div [hidden]="!sch.errors.required">
+                Schedule is required
+              </div>
+            </div>
           </div>
         </div>
-        <br />
-
-        
+        <br /> 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">
           Close
         </button>
-        <button type="button" class="btn btn-success" (click)="addAssigneeTask()">
+        <button [disabled]="!sch.valid || !assign.valid || !atid.valid || !ti.valid || !ai.valid"  type="submit" class="btn btn-success" (click)="addAssigneeTask()">
           Add
         </button>
       </div>
@@ -190,58 +200,61 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class="row" *ngIf="isEdit">
+        <div class="row">
           <div class="col-4">AssigneeTask Id</div>
           <div class="col-8">
-            <input class="form-control" [(ngModel)]="AssigneeTask.assigneeTaskId" />
-          </div>
-        </div>
-        <br />
-        <div class="row">
-          <div class="col-4">Assignee Id</div>
-          <div class="col-8">
             <input
+            disabled
               class="form-control"
-              type="string"
-              [(ngModel)]="AssigneeTask.assigneeId"
+              type="number"
+              [(ngModel)]="AssigneeTask.assigneeTaskId"
             />
           </div>
         </div>
         <br />
-        <div class="row">
-          <div class="col-4">State Id</div>
-          <div class="col-8">
-            <input
-              class="form-control"
-              type="string"
-              [(ngModel)]="AssigneeTask.stateId"
-            />
-          </div>
+        <div class="form-group">
+          <label for="SelectCountry" >Assignee Id</label>
+            <select class="form-control" [(ngModel)]="selectedOptionAI" (ngModelChange)="onValueChangedAI($event)" required  name="uassign" #uassign="ngModel">
+              <option [ngValue]="undefined" disabled>Select An Option</option>
+              <option *ngFor="let assignee of Assignees.data" [ngValue]="assignee.assigneeId">{{assignee.assigneeName}}</option>
+            </select>
         </div>
         <br />
-        <div class="row">
-          <div class="col-4">Task Id</div>
-          <div class="col-8">
-            <input
-              class="form-control"
-              type="string"
-              [(ngModel)]="AssigneeTask.taskId"
-            />
-          </div>
+       <div class="form-group">
+          <label for="SelectCountry" >State Id</label>
+            <select class="form-control" [(ngModel)]="selectedOptionSI" (ngModelChange)="onValueChangedSI($event)" required  name="uai" #uai="ngModel">
+              <option [ngValue]="undefined" disabled>Select An Option</option>
+              <option *ngFor="let state of States.data" [ngValue]="state.stateId">{{state.stateName}}</option>
+            </select>
         </div>
         <br />
-        <div class="row">
+        <div class="form-group">
+          <label for="SelectCountry" >Task Id</label>
+            <select class="form-control" [(ngModel)]="selectedOptionTI" (ngModelChange)="onValueChangedTI($event)" required  name="uti" #uti="ngModel">
+              <option [ngValue]="undefined" disabled>Select An Option</option>
+              <option *ngFor="let task of Tasks.data" [ngValue]="task.taskId">{{task.taskName}}</option>
+            </select>
+        </div>
+        <br />
+       <div class="row">
           <div class="col-4">Schedule</div>
           <div class="col-8">
             <input
               class="form-control"
               type="string"
               [(ngModel)]="AssigneeTask.schedule"
+              required name="usch"
+              #usch="ngModel"
+              ngModel
             />
+            <div *ngIf="usch.errors && (usch.dirty || usch.touched)" class="alert alert-danger">
+              <div [hidden]="!usch.errors.required">
+                Schedule is required
+              </div>
+            </div>
           </div>
         </div>
-        <br />
-        
+        <br /> 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">
@@ -251,6 +264,7 @@
           type="button"
           class="btn btn-primary"
           (click)="updateAssigneeTask(AssigneeTask.assigneeTaskId)"
+          [disabled]="!usch.valid || !uassign.valid  || !uti.valid || !uai.valid"
         >
           Save
         </button>
@@ -258,3 +272,4 @@
     </div>
   </div>
 </div>
+

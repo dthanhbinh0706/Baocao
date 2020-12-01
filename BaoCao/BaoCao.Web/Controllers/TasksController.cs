@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.TagHelpers;
 
 namespace BaoCao.Web.Controllers
 {
@@ -11,6 +12,8 @@ namespace BaoCao.Web.Controllers
     using DAL.Models;
     using Common.Req;
     using Common.Rsp;
+    using BaoCao.Web.Pages;
+    using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
 
     [Route("api/[controller]")]
     [ApiController]
@@ -20,6 +23,8 @@ namespace BaoCao.Web.Controllers
         {
             _svc = new TasksSvc();
         }
+
+        
 
         // RESTful API
 
@@ -51,8 +56,19 @@ namespace BaoCao.Web.Controllers
         {
             var res = _svc.CreateTask(req);
 
-            return Ok(res);
+                return Ok(res);
+         
+            
+
+            
+            
+                
+           
+            
         }
+
+
+        
 
         // Put Method: api/Products/5
         [HttpPut("{Id}")]

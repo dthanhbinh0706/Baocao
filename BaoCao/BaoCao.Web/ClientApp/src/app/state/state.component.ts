@@ -138,6 +138,7 @@ Previous()
   addState()
   {
     var x = {
+      stateId: Number(this.State.stateId),
       stateName: String(this.State.stateName) ,
     };
     console.log(x);

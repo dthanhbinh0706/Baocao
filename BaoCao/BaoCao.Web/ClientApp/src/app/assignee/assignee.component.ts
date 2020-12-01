@@ -138,6 +138,7 @@ Previous()
   addAssignee()
   {
     var x = {
+      assigneeId: Number(this.Assignee.assigneeId),
       assigneeName: String(this.Assignee.assigneeName) ,
     };
     console.log(x);

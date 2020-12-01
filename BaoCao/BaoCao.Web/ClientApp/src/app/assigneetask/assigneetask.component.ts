@@ -18,6 +18,31 @@ export class AssigneeTaskComponent implements OnInit {
     total_page: Number,
   };
 
+
+  States: any ={
+    data: []
+  }
+  State:any={
+    stateId: Number,
+    stateName:String
+  }
+  Assignees: any ={
+    data: []
+  }
+  Assignee:any={
+    assigneeId: Number,
+    AssigneeName:String
+  }
+  Tasks: any ={
+    data: []
+  }
+  Task:any={
+    taskId: Number,
+    taskName:String
+  }
+
+  
+
   AssigneeTask:any = {
     assigneeTaskId: Number,
     assigneeId: Number,
@@ -50,9 +75,59 @@ export class AssigneeTaskComponent implements OnInit {
   ngOnInit() 
   {
     this.GetAllAssigneeTaskWithPagination(1);
+    this.GetAllStates();
+    this.GetAllTasks();
+    this.GetAllAssignees();
     // this.getuseradminbyid(id);
   }
   
+  GetAllStates() {
+    this.http.get("https://localhost:44380/api/AssigneeTasks/GetAllStates").subscribe(
+      result => {
+        this.States = result;
+        this.States = this.States.data;
+        console.log(this.States);
+      },error => console.error(error)
+    );
+}
+GetAllTasks() {
+  this.http.get("https://localhost:44380/api/AssigneeTasks/GetAllTasks").subscribe(
+    result => {
+      this.Tasks = result;
+      this.Tasks = this.Tasks.data;
+      console.log(this.Tasks);
+    },error => console.error(error)
+  );
+}
+GetAllAssignees() {
+  this.http.get("https://localhost:44380/api/AssigneeTasks/GetAllAssignees").subscribe(
+    result => {
+      this.Assignees = result;
+      this.Assignees = this.Assignees.data;
+      console.log(this.Assignees);
+    },error => console.error(error)
+  );
+}
+
+selectedOptionAI: any; 
+  public onValueChangedAI(selected: any): void {
+    this.selectedOptionAI = selected;
+    //console.log(this.selectedOption); // should display the selected option.
+  }
+  selectedOptionSI: any; 
+  public onValueChangedSI(selected: any): void {
+    this.selectedOptionSI = selected;
+    //console.log(this.selectedOption); // should display the selected option.
+  }
+  selectedOptionTI: any; 
+  public onValueChangedTI(selected: any): void {
+    this.selectedOptionTI = selected;
+    //console.log(this.selectedOption); // should display the selected option.
+  }
+
+
+
+
   GetAllAssigneeTaskWithPagination(cPage) {
     
     //Tạo mới 2 parameter, page và size.
@@ -147,9 +222,10 @@ Previous()
   addAssigneeTask()
   {
     var x = {
-      assigneeId: Number(this.AssigneeTask.assigneeId),
-      stateId: Number(this.AssigneeTask.stateId),
-      taskId: Number(this.AssigneeTask.taskId),
+      assigneeTaskId: Number(this.AssigneeTask.assigneeTaskId),
+      assigneeId: Number(this.selectedOptionAI),
+      stateId: Number(this.selectedOptionSI),
+      taskId: Number(this.selectedOptionTI),
       schedule: String(this.AssigneeTask.schedule)
     };
     console.log(x);
@@ -170,9 +246,10 @@ Previous()
   updateAssigneeTask(Id) {
     //console.log(id);
     var x = {
-      assigneeId: Number(this.AssigneeTask.assigneeId),
-      stateId: Number(this.AssigneeTask.stateId),
-      taskId: Number(this.AssigneeTask.taskId),
+      assigneeTaskId: Number(this.AssigneeTask.assigneeTaskId),
+      assigneeId: Number(this.selectedOptionAI),
+      stateId: Number(this.selectedOptionSI),
+      taskId: Number(this.selectedOptionTI),
       schedule: String(this.AssigneeTask.schedule)
     };
     this.http.put("https://localhost:44380/api/AssigneeTasks/" + Id, x).subscribe(
@@ -202,5 +279,9 @@ Previous()
     );
   }
 
+  private SelectedCountry: any;
+onChangeCountry($event) {
+        this.SelectedCountry = $event.target.options[$event.target.options.selectedIndex].text;
+      }
 
 }

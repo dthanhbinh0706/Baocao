@@ -15,6 +15,7 @@ import { TaskComponent } from './task/task.component';
 import { StateComponent } from './state/state.component';
 import { ReportComponent } from './report/report.component';
 import { NgxEchartsModule } from 'ngx-echarts';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +33,7 @@ import { NgxEchartsModule } from 'ngx-echarts';
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    BrowserModule, ReactiveFormsModule,
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts')
     }),

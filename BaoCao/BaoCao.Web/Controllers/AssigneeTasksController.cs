@@ -80,6 +80,32 @@ namespace BaoCao.Web.Controllers
             return Ok(res);
         }
 
+        [HttpGet("GetAllAssignees")]
+        public IActionResult GetAllAssignees()
+        {
+            var res = new SingleRsp();
+            res.Data = _svc.GetAllAssignees();
+            return Ok(res);
+        }
+
+        [HttpGet("GetAllStates")]
+        public IActionResult GetAllStates()
+        {
+            var res = new SingleRsp();
+            res.Data = _svc.GetAllStates();
+            return Ok(res);
+        }
+
+        [HttpGet("GetAllTasks")]
+        public IActionResult GetAllTasks()
+        {
+            var res = new SingleRsp();
+            res.Data = _svc.GetAllTasks();
+            return Ok(res);
+        }
+
+
+
         private readonly AssigneeTasksSvc _svc;
     }
 }

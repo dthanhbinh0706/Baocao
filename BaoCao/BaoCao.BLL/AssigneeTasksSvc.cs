@@ -180,7 +180,72 @@ namespace BaoCao.BLL
             return res;
         }
         #endregion
+        //===========================================================
+        //===========================================================
+        #region -- GetAllAssignees --
+        public object GetAllAssignees()
+        {
+            var products = from at in _rep.Context.AssigneeTasks
+                           join a in _rep.Context.Assignees on at.AssigneeId equals a.AssigneeId
+                           select new
+                           {     
+                               assigneeId = a.AssigneeId,
+                               assigneeName = a.AssigneeName
+                           };
 
+            var data = products.OrderBy(x => x.assigneeId).Distinct().ToList();
+            var res = new
+            {
+                data = data
+                
+            };
+            return res;
+        }
+        #endregion
+        //===========================================================
+        //===========================================================
+        #region -- GetAllStates --
+        public object GetAllStates()
+        {
+            var products = from at in _rep.Context.AssigneeTasks
+                           join s in _rep.Context.States on at.StateId equals s.StateId
+                           select new
+                           {
+                               stateId = s.StateId,
+                               stateName = s.StateName,
+                           };
+
+            var data = products.OrderBy(x => x.stateId).Distinct().ToList();
+            var res = new
+            {
+                data = data
+
+            };
+            return res;
+        }
+        #endregion
+        //===========================================================
+        //===========================================================
+        #region -- GetAllTasks --
+        public object GetAllTasks()
+        {
+            var products = from at in _rep.Context.AssigneeTasks
+                           join t in _rep.Context.Tasks on at.TaskId equals t.TaskId
+                           select new
+                           {
+                               taskId = t.TaskId,
+                               taskName = t.TaskName,
+                           };
+
+            var data = products.OrderBy(x => x.taskId).Distinct().ToList();
+            var res = new
+            {
+                data = data
+
+            };
+            return res;
+        }
+        #endregion
 
     }
 }
