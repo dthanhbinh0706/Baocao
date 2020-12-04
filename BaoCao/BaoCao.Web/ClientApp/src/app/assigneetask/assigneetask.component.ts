@@ -1,15 +1,18 @@
 import { Component, OnInit, Inject } from "@angular/core";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Router , NavigationEnd} from "@angular/router";
+import {MatDatepickerInputEvent} from '@angular/material/datepicker';
+import { DateAdapter } from "@angular/material";
+
 declare var $: any;
-
-
 @Component({
   selector: 'app-assigneetask',
   templateUrl: './assigneetask.component.html',
-  styleUrls: ['./assigneetask.component.css']
+  styleUrls: ['./assigneetask.component.css'],
 })
 export class AssigneeTaskComponent implements OnInit {
+  
+
   AssigneeTasks: any = {
     data: [],
     total_record: Number,
@@ -67,6 +70,12 @@ export class AssigneeTaskComponent implements OnInit {
       }
     });
   }
+
+  events: string[] = [];
+
+  startDate = new Date().toISOString();
+  ustartDate = new Date().toISOString();
+
   ngOnDestroy() {
     if (this.refeshdata) {
       this.refeshdata.unsubscribe();
@@ -226,7 +235,7 @@ Previous()
       assigneeId: Number(this.selectedOptionAI),
       stateId: Number(this.selectedOptionSI),
       taskId: Number(this.selectedOptionTI),
-      schedule: String(this.AssigneeTask.schedule)
+      schedule: String(this.startDate)
     };
     console.log(x);
     this.http.post("https://localhost:44380/api/AssigneeTasks", x).subscribe(
@@ -250,7 +259,7 @@ Previous()
       assigneeId: Number(this.selectedOptionAI),
       stateId: Number(this.selectedOptionSI),
       taskId: Number(this.selectedOptionTI),
-      schedule: String(this.AssigneeTask.schedule)
+      schedule: String(this.ustartDate)
     };
     this.http.put("https://localhost:44380/api/AssigneeTasks/" + Id, x).subscribe(
       (result) => {
@@ -285,3 +294,6 @@ onChangeCountry($event) {
       }
 
 }
+
+
+
