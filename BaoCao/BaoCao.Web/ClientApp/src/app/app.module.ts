@@ -15,6 +15,8 @@ import { AssigneeTaskComponent } from './assigneetask/assigneetask.component';
 import { TaskComponent } from './task/task.component';
 import { StateComponent } from './state/state.component';
 import { ReportComponent } from './report/report.component';
+import { DepartmentComponent } from './department/department.component';
+import { AssigneeDepartmentComponent } from './assigneedepartment/assigneedepartment.component';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { NgxMatDatetimePickerModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
 import {
@@ -80,6 +82,8 @@ import {OverlayModule} from '@angular/cdk/overlay';
     TaskComponent,
     StateComponent,
     ReportComponent,
+    DepartmentComponent ,
+    AssigneeDepartmentComponent,
   ],
   
   imports: [
@@ -110,6 +114,10 @@ import {OverlayModule} from '@angular/cdk/overlay';
       { path: 'task', component: TaskComponent },
       { path: 'state', component: StateComponent },
       { path: 'report', component: ReportComponent },
+      { path: 'department', component: DepartmentComponent },
+      { path: 'assigneedepartment', component: AssigneeDepartmentComponent },
+      
+
     
     ])
   ],

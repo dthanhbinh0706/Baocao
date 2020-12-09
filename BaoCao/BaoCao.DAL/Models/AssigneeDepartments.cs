@@ -5,8 +5,9 @@ namespace BaoCao.DAL.Models
 {
     public partial class AssigneeDepartments
     {
-        public int AssigneeId { get; set; }
-        public int DepartmentId { get; set; }
+        public int AssigneeDepartmentId { get; set; }
+        public int? AssigneeId { get; set; }
+        public int? DepartmentId { get; set; }
 
         public virtual Assignees Assignee { get; set; }
         public virtual Departments Department { get; set; }

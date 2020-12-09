@@ -12,7 +12,7 @@ using BaoCao.DAL;
 namespace BaoCao.BLL
 {
 
-    public class AssigneeTasksSvc : GenericSvc<AssigneeTasksRep, AssigneeTasks>
+    public class AssigneeDepartmentsSvc : GenericSvc<AssigneeDepartmentsRep, AssigneeDepartments>
     {
         #region -- Overrides --
 
@@ -36,11 +36,11 @@ namespace BaoCao.BLL
         /// </summary>
         /// <param name="m">The model</param>
         /// <returns>Return the result</returns>
-        public override SingleRsp Update(AssigneeTasks m)
+        public override SingleRsp Update(AssigneeDepartments m)
         {
             var res = new SingleRsp();
 
-            var m1 = m.AssigneeTaskId > 0 ? _rep.Read(m.AssigneeTaskId) : _rep.Read(m.TaskId);
+            var m1 = m.AssigneeDepartmentId > 0 ? _rep.Read(m.AssigneeDepartmentId) : _rep.Read(m.AssigneeDepartmentId);
             if (m1 == null)
             {
                 res.SetError("EZ103", "No data.");
@@ -60,27 +60,24 @@ namespace BaoCao.BLL
         /// <summary>
         /// Initialize
         /// </summary>
-        public AssigneeTasksSvc() { }
+        public AssigneeDepartmentsSvc() { }
 
 
         #endregion
         //===========================================================
         //===========================================================
 
-        #region -- Get AssigneeTask By ID -- 
-        public object GetAssigneeTaskById(int id)
+        #region -- Get AssigneeDepartment By ID -- 
+        public object GetAssigneeDepartmentById(int id)
         {
 
-            var product = from p in _rep.Context.AssigneeTasks
-                          where p.AssigneeTaskId == id
+            var product = from p in _rep.Context.AssigneeDepartments
+                          where p.AssigneeDepartmentId == id
                           select new
                           {
-                              assigneeTaskId =p.AssigneeTaskId,
+                              assigneeDepartmentId = p.AssigneeDepartmentId,
                               assigneeId = p.AssigneeId,
-                              taskId = p.TaskId,
-                              stateId=p.StateId,
-                              schedule = p.Schedule,
-
+                              departmentId = p.DepartmentId,
                           };
             return product;
         }
@@ -88,40 +85,36 @@ namespace BaoCao.BLL
         //===========================================================
         //===========================================================
 
-        #region -- Create AssigneeTask --
+        #region -- Create AssigneeDepartment --
 
-        public SingleRsp CreateAssigneeTask(AssigneeTasksReq pro)
+        public SingleRsp CreateAssigneeDepartment(AssigneeDepartmentsReq pro)
         {
             var res = new SingleRsp();
-            AssigneeTasks product = new AssigneeTasks();
+            AssigneeDepartments product = new AssigneeDepartments();
 
-            product.AssigneeTaskId = pro.AssigneeTaskId;
+            product.AssigneeDepartmentId = pro.AssigneeDepartmentId;
             product.AssigneeId = pro.AssigneeId;
-            product.TaskId = pro.TaskId;
-            product.StateId = pro.StateId;
-            product.Schedule = pro.Schedule;
+            product.DepartmentId = pro.DepartmentId;
 
-            res = _rep.CreateAssigneeTask(product);
+            res = _rep.CreateAssigneeDepartment(product);
             return res;
         }
         #endregion
         //===========================================================
         //===========================================================
 
-        #region -- Update AssigneeTask --
+        #region -- Update AssigneeDepartment --
 
-        public SingleRsp UpdateAssigneeTask(int id, AssigneeTasksReq pro)
+        public SingleRsp UpdateAssigneeDepartment(int id, AssigneeDepartmentsReq pro)
         {
             var res = new SingleRsp();
 
-            var product = All.FirstOrDefault(x => x.AssigneeTaskId.Equals(id));
+            var product = All.FirstOrDefault(x => x.AssigneeDepartmentId.Equals(id));
 
-            product.AssigneeTaskId = pro.AssigneeTaskId;
+            product.AssigneeDepartmentId = pro.AssigneeDepartmentId;
             product.AssigneeId = pro.AssigneeId;
-            product.TaskId = pro.TaskId;
-            product.StateId = pro.StateId;
-            product.Schedule = pro.Schedule;
-            res = _rep.UpdateAssigneeTask(product);
+            product.DepartmentId = pro.DepartmentId;
+            res = _rep.UpdateAssigneeDepartment(product);
 
             return res;
         }
@@ -129,46 +122,42 @@ namespace BaoCao.BLL
         //===========================================================
         //===========================================================
 
-        #region -- Delete AssigneeTask  --
-        public object DeleteAssigneeTask(int id)
+        #region -- Delete AssigneeDepartment  --
+        public object DeleteAssigneeDepartment(int id)
         {
-            return _rep.DeleteAssigneeTask(id);
+            return _rep.DeleteAssigneeDepartment(id);
         }
         #endregion
         //===========================================================
         //===========================================================
 
         #region --Searh Product--
-        public object searchAssigneeTaskWithPagination(string key, int page, int size)
+        public object searchAssigneeDepartmentWithPagination(string key, int page, int size)
         {
-            return _rep.searchAssigneeTaskWithPagination(key, page, size);
+            return _rep.searchAssigneeDepartmentWithPagination(key, page, size);
         }
         #endregion
         //===========================================================
         //===========================================================
 
-
-        #region -- GetAllAssigneeTaskWithPagination --
-        public object GetAllAssigneeTaskWithPagination(int page, int size)
+        #region -- GetAllAssigneeDepartmentWithPagination --
+        public object GetAllAssigneeDepartmentWithPagination(int page, int size)
         {
-            var products = from at in _rep.Context.AssigneeTasks
+            var products = from at in _rep.Context.AssigneeDepartments
                            join a in _rep.Context.Assignees on at.AssigneeId equals a.AssigneeId
-                           join s in _rep.Context.States on at.StateId equals s.StateId
-                           join t in _rep.Context.Tasks on at.TaskId equals t.TaskId
+                           join s in _rep.Context.Departments on at.DepartmentId equals s.DepartmentId
                            select new
                            {
-                               assigneeTaskId = at.AssigneeTaskId,
+                               assigneeDepartmentId = at.AssigneeDepartmentId,
                                assigneeName = a.AssigneeName,
-                                 stateName = s.StateName,
-                                taskName = t.TaskName,
-                                schedule = at.Schedule
+                               departmentName = s.DepartmentName
                            };
 
             // pagination
             var offset = (page - 1) * size;
             var total = products.Count();
             int totalpage = (total % size) == 0 ? (total / size) : (int)((total / size) + 1);
-            var data = products.OrderBy(x => x.assigneeTaskId).Skip(offset).Take(size).ToList();
+            var data = products.OrderBy(x => x.assigneeDepartmentId).Skip(offset).Take(size).ToList();
             var res = new
             {
                 data = data,
@@ -188,7 +177,7 @@ namespace BaoCao.BLL
             var products = from at in _rep.Context.Assignees
                            join a in _rep.Context.Assignees on at.AssigneeId equals a.AssigneeId
                            select new
-                           {     
+                           {
                                assigneeId = a.AssigneeId,
                                assigneeName = a.AssigneeName
                            };
@@ -197,25 +186,25 @@ namespace BaoCao.BLL
             var res = new
             {
                 data = data
-                
+
             };
             return res;
         }
         #endregion
         //===========================================================
         //===========================================================
-        #region -- GetAllStates --
-        public object GetAllStates()
+        #region -- GetAllDepartments --
+        public object GetAllDepartments()
         {
-            var products = from at in _rep.Context.States
-                           join s in _rep.Context.States on at.StateId equals s.StateId
+            var products = from at in _rep.Context.Departments
+                           join s in _rep.Context.Departments on at.DepartmentId equals s.DepartmentId
                            select new
                            {
-                               stateId = s.StateId,
-                               stateName = s.StateName,
+                               departmentId = s.DepartmentId,
+                               departmentName = s.DepartmentName,
                            };
 
-            var data = products.OrderBy(x => x.stateId).Distinct().ToList();
+            var data = products.OrderBy(x => x.departmentId).Distinct().ToList();
             var res = new
             {
                 data = data
@@ -226,26 +215,7 @@ namespace BaoCao.BLL
         #endregion
         //===========================================================
         //===========================================================
-        #region -- GetAllTasks --
-        public object GetAllTasks()
-        {
-            var products = from at in _rep.Context.Tasks
-                           join t in _rep.Context.Tasks on at.TaskId equals t.TaskId
-                           select new
-                           {
-                               taskId = t.TaskId,
-                               taskName = t.TaskName,
-                           };
-
-            var data = products.OrderBy(x => x.taskId).Distinct().ToList();
-            var res = new
-            {
-                data = data
-
-            };
-            return res;
-        }
-        #endregion
-
     }
 }
+
+

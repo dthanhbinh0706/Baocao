@@ -36,19 +36,20 @@ namespace BaoCao.DAL.Models
         {
             modelBuilder.Entity<AssigneeDepartments>(entity =>
             {
-                entity.HasKey(e => new { e.AssigneeId, e.DepartmentId });
+                entity.HasKey(e => e.AssigneeDepartmentId)
+                    .HasName("PK__Assignee__AD1CB1953EC72232");
+
+                entity.Property(e => e.AssigneeDepartmentId).ValueGeneratedNever();
 
                 entity.HasOne(d => d.Assignee)
                     .WithMany(p => p.AssigneeDepartments)
                     .HasForeignKey(d => d.AssigneeId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("AD_A");
+                    .HasConstraintName("FK_AssigneeDepartments_Assignees");
 
                 entity.HasOne(d => d.Department)
                     .WithMany(p => p.AssigneeDepartments)
                     .HasForeignKey(d => d.DepartmentId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("AD_D");
+                    .HasConstraintName("FK_AssigneeDepartments_Departments");
             });
 
             modelBuilder.Entity<AssigneeTasks>(entity =>

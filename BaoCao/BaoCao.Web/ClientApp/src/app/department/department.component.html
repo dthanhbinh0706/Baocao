@@ -1,0 +1,231 @@
+
+<h1 id="tableLabel">DEPARTMENTS</h1>
+
+<p *ngIf="!Departments"><em>Loading...</em></p>
+
+<button class="btn btn-primary" (click)="openModal(true,null)">Add New Department</button>
+<hr />
+<table class="table table-light" *ngIf="Departments.total_record > 0">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">User</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let department of Departments.data">
+      <td>{{ department.departmentId }}</td>
+      <td>{{ department.departmentName }}</td>
+      <td>
+        <button class="btn btn-info btn-sm" (click)="openModalEdit(false,department)">
+          Edit
+        </button>
+        <button class="btn btn-danger btn-sm" (click)="deleteDepartment(department.departmentId)">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item">
+      <a
+        class="page-link"
+        aria-label="Previous"
+        href="javascript:void(0);"
+        (click)="Previous()"
+      >
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>
+    <li class="page-item">
+      <a class="page-link">{{ Departments.page }}</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link">{{ Departments.page + 1 }}</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link">{{ Departments.page + 2 }}</a>
+    </li>
+    <li class="page-item">
+      <a
+        class="page-link"
+        aria-label="Next"
+        href="javascript:void(0);"
+        (click)="Next()"
+      >
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" *ngIf="!isEdit" id="exampleModalLabel">
+          Add New Department
+        </h5>
+        <h5 class="modal-title" *ngIf="isEdit" id="exampleModalLabel">
+          Update Department
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-4">Department Id</div>
+          <div class="col-8">
+            <input
+              class="form-control"
+              type="number"
+              [(ngModel)]="Department.departmentId"
+              required name="staid"
+              #staid="ngModel"
+              ngModel
+            />
+            <div *ngIf="staid.errors && (staid.dirty || staid.touched)" class="alert alert-danger">
+              <div [hidden]="!staid.errors.required">
+                Id is required
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col-4">Department Name</div>
+          <div class="col-8">
+            <input
+              pattern="^[a-zA-Z\s]*$"
+              class="form-control"
+              type="string"
+              [(ngModel)]="Department.departmentName"
+              required name="staname"
+              #staname="ngModel"
+              minlength="1"
+              ngModel
+            />
+            <div *ngIf="staname.errors && (staname.dirty || staname.touched)" class="alert alert-danger">
+              <div [hidden]="!staname.errors.required">
+                Name is required
+              </div>
+              <div [hidden]="!staname.errors.minlength">
+                Name must be at least 1 letters
+              </div>
+              <div [hidden]="!staname.errors.pattern">
+                Not correct format. The name must be not digits
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+        <button [disabled]="!staid.valid || !staname.valid" type="button" class="btn btn-success" (click)="addDepartment()">
+          Add
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div
+  class="modal fade"
+  id="exampleModal1"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" *ngIf="!isEdit" id="exampleModalLabel">
+          Add New Department
+        </h5>
+        <h5 class="modal-title" *ngIf="isEdit" id="exampleModalLabel">
+          Update Department
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row" *ngIf="isEdit">
+          <div class="col-4">Department Id</div>
+          <div class="col-8">
+            <input disabled class="form-control" [(ngModel)]="Department.departmentId" />
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col-4">Department Name</div>
+          <div class="col-8">
+            <input
+            pattern="^[a-zA-Z\s]*$"
+              class="form-control"
+              type="string"
+              [(ngModel)]="Department.departmentName"
+              required name="ustaname"
+              #ustaname="ngModel"
+              minlength="1"
+            />
+            <div *ngIf="ustaname.errors && (ustaname.dirty || ustaname.touched)" class="alert alert-danger">
+              <div [hidden]="!ustaname.errors.required">
+                Name is required
+              </div>
+              <div [hidden]="!ustaname.errors.minlength">
+                Name must be at least 1 letters
+              </div>
+              <div [hidden]="!ustaname.errors.pattern">
+                Not correct format. The name must be not digits and specific symbols
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="updateDepartment(Department.departmentId)"
+          [disabled]="!ustaname.valid"
+        >
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
