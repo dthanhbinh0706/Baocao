@@ -100,7 +100,6 @@
           <div class="col-4">AssigneeTask Id</div>
           <div class="col-8">
             <input
-            
               class="form-control"
               type="number"
               [(ngModel)]="AssigneeTask.assigneeTaskId"
@@ -143,14 +142,15 @@
        <div class="row">
           <div class="col-4">Schedule</div>
           <div class="col-8">
+    
             <mat-form-field appearance="fill">
               <mat-label>Choose a date</mat-label>
-              <input matInput [matDatepicker]="picker"  [(ngModel)]="startDate" required>
+              <input matInput [matDatepicker]="picker"  [(ngModel)]="selectedOptionSch" (ngModelChange)="onValueChangedSch($event)" required name="se" #se="ngModel">
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
-           
-           
+            </mat-form-field> 
+
+         
           </div>
         </div>
         <br /> 
@@ -159,8 +159,8 @@
         <button type="button" class="btn btn-secondary" data-dismiss="modal">
           Close
         </button>
-        <button [disabled]=" !picker.valid ||!assign.valid || !atid.valid || !ti.valid || !ai.valid"  type="submit" class="btn btn-success" (click)="addAssigneeTask()">
-          Add
+        <button [disabled]=" !atid.valid || !assign.valid || !ai.valid || !ti.valid || !se.valid"  type="button" class="btn btn-success" (click)="addAssigneeTask()">
+          Add 
         </button>
       </div>
     </div>
@@ -235,7 +235,7 @@
           <div class="col-8">
             <mat-form-field appearance="fill">
               <mat-label>Choose a date</mat-label>
-              <input matInput [matDatepicker]="upicker" [(ngModel)]="ustartDate" required>
+              <input matInput [matDatepicker]="upicker" [(ngModel)]="uselectedOptionSch" (ngModelChange)="uonValueChangedSch($event)" required name="use" #use='ngModel'>
               <mat-datepicker-toggle matSuffix [for]="upicker"></mat-datepicker-toggle>
               <mat-datepicker #upicker></mat-datepicker>
             </mat-form-field>
@@ -251,7 +251,7 @@
           type="button"
           class="btn btn-primary"
           (click)="updateAssigneeTask(AssigneeTask.assigneeTaskId)"
-          [disabled]="!upicker.valid || !uassign.valid  || !uti.valid || !uai.valid"
+          [disabled]="!use.valid || !uassign.valid  || !uti.valid || !uai.valid"
         >
           Save
         </button>

@@ -1,8 +1,10 @@
 import { Component, OnInit, Inject } from "@angular/core";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Router , NavigationEnd} from "@angular/router";
-import {MatDatepickerInputEvent} from '@angular/material/datepicker';
+import { DatePipe, getLocaleDateTimeFormat } from '@angular/common';
 import { DateAdapter } from "@angular/material";
+
+
 
 declare var $: any;
 @Component({
@@ -51,16 +53,18 @@ export class AssigneeTaskComponent implements OnInit {
     assigneeId: Number,
     stateId: Number,
     taskId: Number,
-    schedule: Date
+    schedule: Date,
     
   }
   isEdit: boolean = true;
   refeshdata: any;
+  
 
   constructor(
     private http: HttpClient, private router:Router,
     @Inject("BASE_URL") baseUrl: string
   ) {
+   
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };
@@ -71,10 +75,33 @@ export class AssigneeTaskComponent implements OnInit {
     });
   }
 
-  events: string[] = [];
+  
+  
 
-  startDate = new Date().toISOString();
-  ustartDate = new Date().toISOString();
+  events: string[] = [];
+  selectedSch(str) {
+    var date = new Date(str),
+    mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+    day = ("0" + date.getDate()).slice(-2);
+  return [date.getFullYear(), mnth, day].join("-");
+  }
+  selectedOptionSch: any; 
+  public onValueChangedSch(selected: any): void {
+    this.selectedOptionSch = this.selectedSch(selected) ;
+    console.log(this.selectedSch(selected)); // should display the selected option.
+  }
+  uselectedSch(str) {
+    var date = new Date(str),
+    mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+    day = ("0" + date.getDate()).slice(-2);
+  return [date.getFullYear(), mnth, day].join("-");
+  }
+  uselectedOptionSch: any; 
+  public uonValueChangedSch(selected: any): void {
+    this.uselectedOptionSch = this.uselectedSch(selected) ;
+    console.log(this.uselectedSch(selected)); // should display the selected option.
+  }
+  
 
   ngOnDestroy() {
     if (this.refeshdata) {
@@ -118,6 +145,8 @@ GetAllAssignees() {
   );
 }
 
+
+
 selectedOptionAI: any; 
   public onValueChangedAI(selected: any): void {
     this.selectedOptionAI = selected;
@@ -151,6 +180,8 @@ selectedOptionAI: any;
       },error => console.error(error)
     );
 }
+
+
 
 
 
@@ -235,7 +266,7 @@ Previous()
       assigneeId: Number(this.selectedOptionAI),
       stateId: Number(this.selectedOptionSI),
       taskId: Number(this.selectedOptionTI),
-      schedule: String(this.startDate)
+      schedule: String(this.selectedOptionSch)
     };
     console.log(x);
     this.http.post("https://localhost:44380/api/AssigneeTasks", x).subscribe(
@@ -259,7 +290,7 @@ Previous()
       assigneeId: Number(this.selectedOptionAI),
       stateId: Number(this.selectedOptionSI),
       taskId: Number(this.selectedOptionTI),
-      schedule: String(this.ustartDate)
+      schedule: String(this.uselectedOptionSch)
     };
     this.http.put("https://localhost:44380/api/AssigneeTasks/" + Id, x).subscribe(
       (result) => {

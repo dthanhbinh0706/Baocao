@@ -12,6 +12,5 @@ namespace BaoCao.Common.Req
         public int TaskId { get; set; }
         public int StateId { get; set; }
         public DateTime Schedule { get; set; }
-
     }
 }

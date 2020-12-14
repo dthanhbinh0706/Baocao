@@ -15,3 +15,4 @@ C:\Users\DELL\Baocao\BaoCao\BaoCao.Common\obj\Debug\netcoreapp3.1\BaoCao.Common.
 C:\Users\DELL\Baocao\BaoCao\BaoCao.Common\obj\Debug\netcoreapp3.1\BaoCao.Common.AssemblyInfo.cs
 C:\Users\DELL\Baocao\BaoCao\BaoCao.Common\obj\Debug\netcoreapp3.1\BaoCao.Common.dll
 C:\Users\DELL\Baocao\BaoCao\BaoCao.Common\obj\Debug\netcoreapp3.1\BaoCao.Common.pdb
+C:\Users\DELL\BaoCao\BaoCao\BaoCao.Common\obj\Debug\netcoreapp3.1\BaoCao.Common.csprojAssemblyReference.cache

@@ -1,1 +1,219 @@
-<p>assigneedepartment works!</p>
+
+<h1 id="tableLabel">ASSIGNEE DEPARTMENTS</h1>
+
+<p *ngIf="!AssigneeDepartments"><em>Loading...</em></p>
+
+<button class="btn btn-primary" (click)="openModal(true,null)">Add New AssigneeDepartment</button>
+<hr />
+<table class="table table-light">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">AssigneeName</th>
+      <th scope="col">DepartmentName</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let assigneeDepartment of AssigneeDepartments.data">
+      <td>{{ assigneeDepartment.assigneeDepartmentId }}</td>
+      <td>{{ assigneeDepartment.assigneeName }}</td>
+      <td>{{ assigneeDepartment.departmentName }}</td>
+      <td>
+        <button class="btn btn-info btn-sm" (click)="openModalEdit(false,assigneeDepartment)">
+          Edit
+        </button>
+        <button class="btn btn-danger btn-sm" (click)="deleteAssigneeDepartment(assigneeDepartment.assigneeDepartmentId)">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item">
+      <a
+        class="page-link"
+        aria-label="Previous"
+        href="javascript:void(0);"
+        (click)="Previous()"
+      >
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>
+    <li class="page-item">
+      <a class="page-link">{{ AssigneeDepartments.page }}</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link">{{ AssigneeDepartments.page + 1 }}</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link">{{ AssigneeDepartments.page + 2 }}</a>
+    </li>
+    <li class="page-item">
+      <a
+        class="page-link"
+        aria-label="Next"
+        href="javascript:void(0);"
+        (click)="Next()"
+      >
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" *ngIf="!isEdit" id="exampleModalLabel">
+          Add New AssigneeDepartment
+        </h5>
+        <h5 class="modal-title" *ngIf="isEdit" id="exampleModalLabel">
+          Update AssigneeDepartment
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-4">AssigneeDepartment Id</div>
+          <div class="col-8">
+            <input
+            
+              class="form-control"
+              type="number"
+              [(ngModel)]="AssigneeDepartment.assigneeDepartmentId"
+              required name="atid"
+              #atid="ngModel"
+              ngModel
+            />
+            <div *ngIf="atid.errors && (atid.dirty || atid.touched)" class="alert alert-danger">
+              <div [hidden]="!atid.errors.required">
+                Id is required
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+        <div class="form-group">
+          <label for="SelectCountry" >Assignee Id</label>
+            <select class="form-control" [(ngModel)]="selectedOptionAI" (ngModelChange)="onValueChangedAI($event)" required  name="assign" #assign="ngModel">
+              <option [ngValue]="undefined" disabled>Select An Option</option>
+              <option *ngFor="let assignee of Assignees.data" [ngValue]="assignee.assigneeId">{{assignee.assigneeName}}</option>
+            </select>
+        </div>
+        <br />
+       <div class="form-group">
+          <label for="SelectCountry" >Department Id</label>
+            <select class="form-control" [(ngModel)]="selectedOptionSI" (ngModelChange)="onValueChangedSI($event)" required  name="ai" #ai="ngModel">
+              <option [ngValue]="undefined" disabled>Select An Option</option>
+              <option *ngFor="let department of Departments.data" [ngValue]="department.departmentId">{{department.departmentName}}</option>
+            </select>
+        </div>
+        <br /> 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+        <button [disabled]="!assign.valid || !atid.valid  || !ai.valid"  type="submit" class="btn btn-success" (click)="addAssigneeDepartment()">
+          Add
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="exampleModal1"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" *ngIf="!isEdit" id="exampleModalLabel">
+          Add New Assignee
+        </h5>
+        <h5 class="modal-title" *ngIf="isEdit" id="exampleModalLabel">
+          Update Assignee
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-4">AssigneeDepartment Id</div>
+          <div class="col-8">
+            <input
+            disabled
+              class="form-control"
+              type="number"
+              [(ngModel)]="AssigneeDepartment.assigneeDepartmentId"
+            />
+          </div>
+        </div>
+        <br />
+        <div class="form-group">
+          <label for="SelectCountry" >Assignee Id</label>
+            <select class="form-control" [(ngModel)]="selectedOptionAI" (ngModelChange)="onValueChangedAI($event)" required  name="uassign" #uassign="ngModel">
+              <option [ngValue]="undefined" disabled>Select An Option</option>
+              <option *ngFor="let assignee of Assignees.data" [ngValue]="assignee.assigneeId">{{assignee.assigneeName}}</option>
+            </select>
+        </div>
+        <br />
+       <div class="form-group">
+          <label for="SelectCountry" >Department Id</label>
+            <select class="form-control" [(ngModel)]="selectedOptionSI" (ngModelChange)="onValueChangedSI($event)" required  name="uai" #uai="ngModel">
+              <option [ngValue]="undefined" disabled>Select An Option</option>
+              <option *ngFor="let department of Departments.data" [ngValue]="department.departmentId">{{department.departmentName}}</option>
+            </select>
+        </div>
+        <br /> 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="updateAssigneeDepartment(AssigneeDepartment.assigneeDepartmentId)"
+          [disabled]="!uassign.valid || !uai.valid" 
+        >
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+
