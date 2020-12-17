@@ -1,0 +1,15 @@
+.example-container {
+    display: flex;
+    flex-direction: column;
+    max-height: 500px;
+    min-width: 300px;
+    margin-bottom: 10px;
+  }
+  
+  .mat-table {
+    overflow: auto;
+    max-height: 500px;
+  }
+  .row.py-5.justify-content-center {
+    background-color: white;
+}

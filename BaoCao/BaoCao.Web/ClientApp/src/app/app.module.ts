@@ -28,6 +28,8 @@ import {
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatTableExporterModule } from 'mat-table-exporter';
+import { MatTableModule } from '@angular/material'  
 
 
 
@@ -48,7 +50,9 @@ import { MatNativeDateModule } from '@angular/material/core';
   ],
   
   imports: [
-    
+  MatTableModule,
+    MatTableModule,
+    MatTableExporterModule,
     MatSliderModule,
     MatButtonModule,
     MatFormFieldModule,

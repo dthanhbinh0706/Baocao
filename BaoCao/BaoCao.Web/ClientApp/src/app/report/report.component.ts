@@ -1,13 +1,15 @@
-import { Component, OnInit, Inject } from "@angular/core";
+import { Component, OnInit, Inject,ViewChild,ElementRef } from "@angular/core";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Router , NavigationEnd} from "@angular/router";
 import { EChartOption, ECharts, EChartsResizeOption, EChartsSeriesType } from 'echarts';
 import { ActivatedRoute } from "@angular/router";
-import { HttpHeaders} from '@angular/common/http';
-import {Observable,of} from 'rxjs';
-import { data } from "jquery";
-import { report } from "process";
-import { Subscription } from "rxjs";
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { JsonExporterService, TxtExporterService } from 'mat-table-exporter';
+import { DataSource } from '@angular/cdk/table';
+import { MatSort } from '@angular/material';
+import * as xlsx from 'xlsx';
+
 declare var $: any;
 
 @Component({
@@ -16,6 +18,21 @@ declare var $: any;
   styleUrls: ['./report.component.css']
 })
 export class ReportComponent implements OnInit {
+
+  @ViewChild('epltable', { static: false }) epltable: ElementRef;
+ 
+  Exs: any = [
+  {
+    assigneeId: Number,
+    assigneeTaskId: Number,
+    assigneeName: String,
+    departmentName: String,
+    taskName: String,
+    schedule: Date
+  }
+ ];
+  
+  Temp: Number;
   Reports: any = {
     data: [],
     total_record: Number,
@@ -143,10 +160,20 @@ option: EChartOption = {
   }
   ngOnInit() 
   {
+    
+    
     this.GetAllReportWithPagination(1);
+    this.GetA();
+    this.Exs = null;
     // this.getuseradminbyid(id);
   }
-  
+  exportToExcel() {
+    const ws: xlsx.WorkSheet =   
+    xlsx.utils.table_to_sheet(this.epltable.nativeElement);
+    const wb: xlsx.WorkBook = xlsx.utils.book_new();
+    xlsx.utils.book_append_sheet(wb, ws, 'Sheet1');
+    xlsx.writeFile(wb, 'epltable.xlsx');
+   }
   
   getAssigneeByState(id) {
     this.http
@@ -172,6 +199,22 @@ option: EChartOption = {
       }
       
     );
+  }
+  GetEx() 
+  {
+    
+      var id = this.Temp ;
+    console.log(id);
+    this.http.get("https://localhost:44380/api/Reports/GetEx?Id="+id).subscribe(
+      (result) => {
+        this.Exs = result;
+        this.Exs = this.Exs.data;
+        console.log(this.Exs);
+      },error => console.error(error)
+      
+    );
+    
+    
   }
   
   GetDay() {
@@ -238,6 +281,5 @@ Previous()
     alert("Bạn đang ở trang đầu!");
   }
 }
- 
-  
 }
+

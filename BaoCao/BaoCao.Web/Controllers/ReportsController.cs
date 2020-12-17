@@ -53,6 +53,15 @@ namespace BaoCao.Web.Controllers
             return Ok(res);
         }
 
+        [HttpGet("GetEx")]
+        public IActionResult GetEx(int Id)
+        {
+            var res = new SingleRsp();
+            var products = _svc.GetEx(Id);
+            res.Data = products;
+            return Ok(res);
+        }
+
         [HttpGet("getAssigneeByState/{Id}")]
         public IActionResult getAssigneeByState(int Id)
         {

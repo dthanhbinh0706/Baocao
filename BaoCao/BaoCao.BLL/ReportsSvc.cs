@@ -110,6 +110,35 @@ namespace BaoCao.BLL
         #endregion
         //===========================================================
         //===========================================================
+        #region -- GetEx -- 
+        public object GetEx(int id)
+        {
+
+            var product = from at in _rep.Context.AssigneeTasks
+                          join a in _rep.Context.Assignees on at.AssigneeId equals a.AssigneeId
+                          join ad in _rep.Context.AssigneeDepartments on at.AssigneeId equals ad.AssigneeId
+                          join d in _rep.Context.Departments on ad.DepartmentId equals d.DepartmentId
+                          join t in _rep.Context.Tasks on at.TaskId equals t.TaskId
+                          join s in _rep.Context.States on at.StateId equals s.StateId
+                          where at.AssigneeId == id
+                          select new
+                          {
+                              assigneeId = at.AssigneeId,
+                              assigneeTaskId = at.AssigneeTaskId,
+                              assigneeName = a.AssigneeName,
+                              departmentName = d.DepartmentName,
+                              taskName = t.TaskName,
+                              schedule = at.Schedule
+                              
+
+                          };
+            return product;
+
+
+        }
+        #endregion
+        //===========================================================
+        //===========================================================
         #region -- GetDistinctiveDate --
         public object GetDistinctiveDate()
         {

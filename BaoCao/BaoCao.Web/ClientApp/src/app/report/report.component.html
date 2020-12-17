@@ -56,4 +56,56 @@
 <hr />
 
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">  
+   <title>Document</title>
+ <body class="bg-light">
+  <div class="container">
+   <div class="row py-5 justify-content-center">
+    <div class="col-md-8">
+     <h1 class="text-center py-4">Statistics results by Assignee Id</h1>
+     <div class="col-md-12 table-responsive" #epltable>
+      <div style="padding-bottom: 10px;padding-top: 10px;">
+       <div class="row">
+        <div class="col-sm-12">
+         <button (click)="exportToExcel()" class="btn btn-success">Export To Excel</button> 
+        </div>
+       </div>
+      </div>
+
+      <input
+              class="form-control"
+              type="number"
+              [(ngModel)]="Temp"
+              ngModel
+            />
+            <button type="button" class="btn btn-success" (click)="GetEx()">
+              OK 
+            </button>
+      <table class="table table-bordered">
+       <thead class="thead-dark">
+       <tr>
+        <th>Assignee Task ID</th>
+        <th>Assignee  Name</th>
+        <th>Department Name</th>
+        <th>Task Name</th>
+        <th>Schedule</th>
+       </tr>
+      </thead>
+      <tbody>
+       <tr *ngFor="let ex of Exs">
+        <td>{{ex.assigneeTaskId}}</td>
+        <td>{{ex.assigneeName}}</td>
+        <td>{{ex.departmentName}}</td>
+        <td>{{ex.taskName}}</td>
+        <td>{{ex.schedule}}</td>
+       </tr>
+      </tbody>
+     </table>
+    </div>
+   </div>
+  </div>
+ </div>
+</body>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.1.0/echarts-en.common.min.js"></script>
