@@ -276,8 +276,9 @@ Previous()
         {
           this.AssigneeTask = res.data;
           window.location.reload();
+          alert("Bạn đã thêm thành công !");
         }
-      },error => console.error(error)
+      },error =>{ console.error(error);alert("Bạn thêm thất bại!");}
     );
   }
 
@@ -315,7 +316,7 @@ Previous()
         this.AssigneeTask = result;
         this.deleteAssigneeTask(Id);
         window.location.reload();
-      },error => console.error(error)
+      },error => {console.error(error); alert("Bạn xóa thất bại !");}
     );
   }
 
